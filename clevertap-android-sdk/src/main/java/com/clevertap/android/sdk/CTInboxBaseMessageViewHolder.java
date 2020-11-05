@@ -30,6 +30,7 @@ import com.google.android.exoplayer2.util.Util;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import static com.google.android.exoplayer2.ui.PlayerView.SHOW_BUFFERING_NEVER;
 
 class CTInboxBaseMessageViewHolder extends RecyclerView.ViewHolder {
     @SuppressWarnings({"unused"})
@@ -228,8 +229,8 @@ class CTInboxBaseMessageViewHolder extends RecyclerView.ViewHolder {
         }
 
         videoSurfaceView.requestFocus();
-        videoSurfaceView.setShowBuffering(false);
-        DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter();
+        videoSurfaceView.setShowBuffering(SHOW_BUFFERING_NEVER);
+        DefaultBandwidthMeter defaultBandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
                 Util.getUserAgent(context, context.getPackageName()), defaultBandwidthMeter);
         String uriString = firstContentItem.getMedia();
